@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% for category in fatherCategory %}
+    <ul>
+        <li>{{category.name}}</li>
+        <ol>
+            {% for categorySon in allCategory %}
+            {% if category.id == categorySon.father_id %}
+            <li>{{categorySon.name}}</li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+    </ul>
+    {% endfor %}
+</body>
+</html>
