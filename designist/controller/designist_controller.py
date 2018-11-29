@@ -82,12 +82,7 @@ def post():
 @app.route('/show_post')
 def show_post():
     fatherCategory = Category.query.filter_by(father_id='0').all()
-    #allCategory = Category.query.all()
-    allCategory = []
-    for category in fatherCategory:
-        allCategory.append(Category.query.filter_by(father_id=category.id).all())
-    allPost = Post.query.all()
-    print(allPost)
+    allCategory = Category.query.all()
     print(fatherCategory)
     print(allCategory)
-    return render_template('show_post.html',fatherCategory=fatherCategory,allCategory=allCategory,allPost=allPost)
+    return render_template('show_post.html',fatherCategory=fatherCategory,allCategory=allCategory)
