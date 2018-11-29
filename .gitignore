@@ -1,2 +1,4 @@
 /.vscode
 /venv
+/designist_v2 3
+.DS_Store

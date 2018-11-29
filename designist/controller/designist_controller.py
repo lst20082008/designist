@@ -7,7 +7,9 @@ from designist.model.Category import Category
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    posts = Post.query.limit(9).all()
+    print(posts)
+    return render_template('index.html',posts=posts)
 
 @app.route('/show_regist')
 def show_regist():
@@ -65,7 +67,10 @@ def show_add_post():
 
 @app.route('/post',methods=['POST'])
 def post():
-    p = Post(request.form['title'],request.form['content'],datetime.datetime.now(),request.form['category_id'])
+    p = Post(request.form['title'],request.form['abstract'],request.form['content'],datetime.datetime.now(),request.form['category_id'])
+    f = request.files['image']
+    print(os.path.join(os.path.abspath('.'),'designist/static/img/'+p.image))
+    f.save(os.path.join(os.path.abspath('.'),'designist/static/img/'+p.image))
     try:
         db.session.add(p)
         db.session.commit()

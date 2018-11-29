@@ -7,10 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="post" method="post">
+    <form action="post" enctype='multipart/form-data' method="post">
         <p>title: <input type="text" name="title" /></p>
+        <p>abstract: <input type="text" name="abstract" /></p>
         <p>content: <input type="text" name="content" /></p>
         <p>category_id: <input type="text" name="category_id" /></p>
+        <p>image: <input type="file" name="image" /></p>
         <input type="submit" value="Submit" />
     </form>
 </body>
