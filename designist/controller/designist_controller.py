@@ -9,7 +9,7 @@ from designist.model.Category import Category
 def index():
     posts = Post.query.limit(9).all()
     print(posts)
-    return render_template('index.html',posts=posts)
+    return render_template('index2.html',posts=posts)
 
 @app.route('/show_regist')
 def show_regist():

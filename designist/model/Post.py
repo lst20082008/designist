@@ -8,6 +8,7 @@ class Post(db.Model):
     image = db.Column(db.String(50))
     content = db.Column(db.Text,nullable=False)
     date = db.Column(db.DateTime,nullable=False)
+    likes = db.Column(db.Integer)
     category_id = db.Column(db.Integer,db.ForeignKey('category.id'),nullable=False)
 
     def __init__(self,title,abstract,content,date,category_id):
@@ -17,5 +18,6 @@ class Post(db.Model):
         self.date = date
         self.category_id = category_id
         self.image = 'post_'+title+'.jpg'
+        self.likes = 0
     def __repr__(self):
         return '<User %r>' % self.title
