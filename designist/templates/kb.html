@@ -30,10 +30,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href={{url_for('index')}}>首页 </a>
+            <a class="nav-link" href="{{url_for('index')}}">首页 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href={{url_for('kb')}}>知识库</a>
+            <a class="nav-link" href="{{url_for('kb')}}">知识库</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">论坛</a>
@@ -64,7 +64,7 @@
           <dd>
           {% for cc in allCategory %}
             {% if cc.father_id == c.id %}
-            <a href={{url_for('kb',category_id=cc.id)}} target="_blank">{{cc.name}}</a><br>
+            <a href="{{url_for('kb',category_id=cc.id)}}">{{cc.name}}</a><br>
             {% endif %}
           {% endfor %}
           </dd>
@@ -77,18 +77,19 @@
   <!-- ================================================== -->
   <div class="list_right">
     <div class="position fn-clear">
-      <span><a href={{url_for('index')}}>首页</a> > <a href={{url_for('kb')}}>知识库</a> > 设计方法</span>
-      <em>设计方法</em>
+      <span><a href="{{url_for('index')}}">首页</a> > <a href="{{url_for('kb')}}">知识库</a>{% if c_name %} > {{c_name}}</span>
+      <em>{{c_name}}</em>{% else %}</span>
+      <em>知识库</em>{% endif %}
     </div>
     <div class="intwobox fn-clear">
       {% for p in pagination.items %}
       <div class="post_info">
           <!-- 知识库：右侧文章div——post图片—————————— -->
-         <div class="post_img"><a href={{url_for('show_post',post_id=p.id)}}><img src="static/img/{{p.image}}" width="280" height="160"  alt=""/></div>
+         <div class="post_img"><a href="{{url_for('show_post',post_id=p.id)}}"><img src="static/img/{{p.image}}" width="280" height="160"  alt=""/></div>
            <!-- 知识库：右侧文章div———post标题————————— -->
-         <div class="post_title"><a href={{url_for('show_post',post_id=p.id)}}>{{p.title}}</a></div>
+         <div class="post_title"><a href="{{url_for('show_post',post_id=p.id)}}">{{p.title}}</a></div>
            <!-- 知识库：右侧文章div———post摘要————————— -->
-         <div class="post_abstract"><a href={{url_for('show_post',post_id=p.id)}}>{{p.abstract}}</a></div>
+         <div class="post_abstract"><a href="{{url_for('show_post',post_id=p.id)}}">{{p.abstract}}</a></div>
          <br style="clear:both"/>
       </div>
       {% endfor %}

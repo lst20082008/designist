@@ -12,6 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(200),nullable=False)
     telphone = db.Column(db.String(20))
     email = db.Column(db.String(50))
+    image = db.Column(db.String(50))
     collections = db.relationship('Post',secondary=collections,lazy='subquery',backref=db.backref('users',lazy=True))
 
     def __init__(self,username,password,telphone,email):
@@ -19,5 +20,6 @@ class User(db.Model):
         self.password = password
         self.telphone = telphone
         self.email = email
+        self.image = 'user_default.jpg'
     def __repr__(self):
         return '<User %r>' % self.username

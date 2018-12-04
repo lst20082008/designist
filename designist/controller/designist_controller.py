@@ -32,23 +32,30 @@ def show_category():
 def show_add_post():
     return render_template('show_add_post.html')
 
-@app.route('/show_post/<int:post_id>')
+@app.route('/show_post<int:post_id>')
 def show_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
+    post.reads = post.reads + 1
+    db.session.commit()
+    pre = Post.query.filter_by(id=post_id-1).first()
+    after = Post.query.filter_by(id=post_id+1).first()
     print(post)
-    return render_template('post.html',post = post)
+    return render_template('post.html',post = post,pre=pre,after=after)
 
 @app.route('/kb')
 def kb():
     page = request.args.get('page',1,type = int)
     category_id = request.args.get('category_id',0,type = int)
+    category_name = Category.query.filter_by(id=category_id).first()
+    if category_name != None:
+        category_name = category_name.name
     fatherCategory = Category.query.filter_by(father_id=0).all()
     allCategory = Category.query.all()
     if category_id == 0:
         pagination = Post.query.order_by(Post.date).paginate(page,per_page=10,error_out=True)
     else:
         pagination = Post.query.filter_by(category_id = category_id).order_by(Post.date).paginate(page,per_page=10,error_out=True)
-    return render_template('kb.html',fatherCategory=fatherCategory,allCategory=allCategory,pagination=pagination)
+    return render_template('kb.html',fatherCategory=fatherCategory,allCategory=allCategory,pagination=pagination,c_name=category_name)
 #Post##################################################################
 
 @app.route('/regist',methods=['POST'])
