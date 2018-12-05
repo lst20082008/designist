@@ -39,7 +39,7 @@ def show_post(post_id):
     db.session.commit()
     pre = Post.query.filter_by(id=post_id-1).first()
     after = Post.query.filter_by(id=post_id+1).first()
-    print(post)
+    print(post.content)
     return render_template('post.html',post = post,pre=pre,after=after)
 
 @app.route('/kb')

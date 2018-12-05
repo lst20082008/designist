@@ -48,13 +48,13 @@
       </h3>
     </div>
     <div class="show-content-{:mt_rand(1,5000)}">
-     {{post.content}}
+     {{post.content|safe}}
     </div>
     <div class="dream-pages mb2em clearfix">
       <a class="first" href="/article/list_1.html">1...</a> <a class="prev" href="/article/list_7.html">上一页</a> <a class="num" href="/article/list_6.html">6</a><a class="num" href="/article/list_7.html">7</a><span class="current">8</span><a class="num" href="/article/list_9.html">9</a> <a class="next" href="/article/list_9.html">下一页</a> <a class="end" href="/article/list_last.html">10</a>
     </div>
     <div class="prev-next">
-      <p>上一篇：<a href="#">{{pre.title}}</a></p>
+      <p>上一篇：<a href="{{url_for('show_post',post_id=pre.id)}}">{{pre.title}}</a></p>
       <p>下一篇：<a href="#">{{after.title}}</a></p>
     </div>
     <div class="article-bottom clearfix">
